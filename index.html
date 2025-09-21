@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tải APK trực tiếp</title>
+    <title>Download App</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background: #1e1e2f;
             color: white;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            gap: 20px;
         }
         .download-btn {
             padding: 15px 30px;
@@ -33,20 +35,30 @@
     </style>
 </head>
 <body>
-    <button class="download-btn" onclick="downloadAPK()">Tải APK</button>
+    <button class="download-btn" onclick="downloadApp('apk')">Tải APK</button>
+    <button class="download-btn" onclick="downloadApp('android')">Google Play</button>
+    <button class="download-btn" onclick="downloadApp('ios')">App Store</button>
 
     <script>
-        function downloadAPK() {
-            // Link trực tiếp từ MediaFire
-            const directLink = "https://download1529.mediafire.com/7zu1rrlgxseg4iPtuXAz137FpO30nhroRR5OiLW2sDoL7GZtxgameaPFk_r7B5DQuNhoR_wGPSOOUKgB_3kMbQEdXgxhADXanW4h8VG4jXD7clWhiRdWKa3kGOENPd33zdqg9AYzpcDv_DQGil7dQXJeBMcWPGH7rLl8iTd2Yitk2g/p7xgltk88x9zz1l/MT+Manager_2.18.4_apkcombo.com.apk";
+        function downloadApp(platform) {
+            const links = {
+                android: 'https://play.google.com/store/apps/details?id=com.dts.freefireth',
+                ios: 'https://apps.apple.com/us/app/free-fire-x-naruto-shippuden/id1300146617',
+                apk: 'https://download1529.mediafire.com/7zu1rrlgxseg4iPtuXAz137FpO30nhroRR5OiLW2sDoL7GZtxgameaPFk_r7B5DQuNhoR_wGPSOOUKgB_3kMbQEdXgxhADXanW4h8VG4jXD7clWhiRdWKa3kGOENPd33zdqg9AYzpcDv_DQGil7dQXJeBMcWPGH7rLl8iTd2Yitk2g/p7xgltk88x9zz1l/MT+Manager_2.18.4_apkcombo.com.apk'
+            };
 
-            // Tạo thẻ <a> ẩn để tải file
-            const a = document.createElement("a");
-            a.href = directLink;
-            a.setAttribute("download", "MT_Manager_2.18.4.apk");
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+            if (platform === 'apk') {
+                // Tải trực tiếp APK
+                const a = document.createElement("a");
+                a.href = links.apk;
+                a.setAttribute("download", "MT_Manager_2.18.4.apk");
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            } else {
+                // Mở Play Store / App Store trong tab mới
+                window.open(links[platform], '_blank');
+            }
         }
     </script>
 </body>
