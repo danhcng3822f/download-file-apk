@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📥 APK Downloader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 320px;
+        }
+        h1 {
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        button {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #4338ca;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📥 APK Downloader</h1>
+        <input type="text" id="mediafireLink" placeholder="Dán link MediaFire tại đây">
+        <button onclick="downloadApp()">Tải File APK</button>
+        <p id="status"></p>
+    </div>
+
+    <script>
+        async function getMediaFireDirectLink(mediafireUrl) {
+            try {
+                const response = await fetch(mediafireUrl);
+                const text = await response.text();
+                const directLinkMatch = text.match(/href="(https?:\/\/download[^"]+)"/);
+                if (directLinkMatch && directLinkMatch[1]) {
+                    return directLinkMatch[1];
+                } else {
+                    throw new Error("Không tìm thấy direct link!");
+                }
+            } catch (error) {
+                console.error("Lỗi khi lấy direct link:", error);
+                return null;
+            }
+        }
+
+        async function downloadApp() {
+            const link = document.getElementById("mediafireLink").value.trim();
+            const status = document.getElementById("status");
+            if (!link) {
+                alert("Vui lòng nhập link MediaFire!");
+                return;
+            }
+
+            status.innerText = "⏳ Đang lấy link tải...";
+            const directLink = await getMediaFireDirectLink(link);
+
+            if (directLink) {
+                status.innerText = "✅ Link sẵn sàng, đang tải...";
+                const a = document.createElement("a");
+                a.href = directLink;
+                a.setAttribute("download", "file.apk");
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            } else {
+                status.innerText = "❌ Không lấy được direct link!";
+            }
+        }
+    </script>
+</body>
+</html>
