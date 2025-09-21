@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tải APK trực tiếp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1e1e2f;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .download-btn {
+            padding: 15px 30px;
+            background: #ff6b35;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+        .download-btn:hover {
+            background: #ff8535;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <button class="download-btn" onclick="downloadAPK()">Tải APK</button>
+
+    <script>
+        function downloadAPK() {
+            // Link trực tiếp từ MediaFire
+            const directLink = "https://download1529.mediafire.com/7zu1rrlgxseg4iPtuXAz137FpO30nhroRR5OiLW2sDoL7GZtxgameaPFk_r7B5DQuNhoR_wGPSOOUKgB_3kMbQEdXgxhADXanW4h8VG4jXD7clWhiRdWKa3kGOENPd33zdqg9AYzpcDv_DQGil7dQXJeBMcWPGH7rLl8iTd2Yitk2g/p7xgltk88x9zz1l/MT+Manager_2.18.4_apkcombo.com.apk";
+
+            // Tạo thẻ <a> ẩn để tải file
+            const a = document.createElement("a");
+            a.href = directLink;
+            a.setAttribute("download", "MT_Manager_2.18.4.apk");
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
+</body>
+</html>
