@@ -35,30 +35,34 @@
     </style>
 </head>
 <body>
-    <button class="download-btn" onclick="downloadApp('apk')">Tải APK</button>
-    <button class="download-btn" onclick="downloadApp('android')">Google Play</button>
-    <button class="download-btn" onclick="downloadApp('ios')">App Store</button>
+    <button class="download-btn" onclick="downloadAPK()">Tải APK</button>
+    <button class="download-btn" onclick="openPlayStore()">Google Play</button>
+    <button class="download-btn" onclick="openAppStore()">App Store</button>
 
     <script>
-        function downloadApp(platform) {
-            const links = {
-                android: 'https://play.google.com/store/apps/details?id=com.dts.freefireth',
-                ios: 'https://apps.apple.com/us/app/free-fire-x-naruto-shippuden/id1300146617',
-                apk: 'https://download1529.mediafire.com/7zu1rrlgxseg4iPtuXAz137FpO30nhroRR5OiLW2sDoL7GZtxgameaPFk_r7B5DQuNhoR_wGPSOOUKgB_3kMbQEdXgxhADXanW4h8VG4jXD7clWhiRdWKa3kGOENPd33zdqg9AYzpcDv_DQGil7dQXJeBMcWPGH7rLl8iTd2Yitk2g/p7xgltk88x9zz1l/MT+Manager_2.18.4_apkcombo.com.apk'
-            };
+        // Link tải
+        const apkLink = "https://download1529.mediafire.com/7zu1rrlgxseg4iPtuXAz137FpO30nhroRR5OiLW2sDoL7GZtxgameaPFk_r7B5DQuNhoR_wGPSOOUKgB_3kMbQEdXgxhADXanW4h8VG4jXD7clWhiRdWKa3kGOENPd33zdqg9AYzpcDv_DQGil7dQXJeBMcWPGH7rLl8iTd2Yitk2g/p7xgltk88x9zz1l/MT+Manager_2.18.4_apkcombo.com.apk";
+        const playStoreLink = "https://play.google.com/store/apps/details?id=com.dts.freefireth";
+        const appStoreLink = "https://apps.apple.com/us/app/free-fire-x-naruto-shippuden/id1300146617";
 
-            if (platform === 'apk') {
-                // Tải trực tiếp APK
-                const a = document.createElement("a");
-                a.href = links.apk;
-                a.setAttribute("download", "MT_Manager_2.18.4.apk");
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-            } else {
-                // Mở Play Store / App Store trong tab mới
-                window.open(links[platform], '_blank');
-            }
+        // Hàm tải APK trực tiếp
+        function downloadAPK() {
+            const a = document.createElement("a");
+            a.href = apkLink;
+            a.setAttribute("download", "MT_Manager_2.18.4.apk");
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        // Hàm mở Play Store
+        function openPlayStore() {
+            window.open(playStoreLink, "_blank");
+        }
+
+        // Hàm mở App Store
+        function openAppStore() {
+            window.open(appStoreLink, "_blank");
         }
     </script>
 </body>
